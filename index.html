@@ -1,23 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Jessie's Site</title>
-  </head>
-  <body>
-    <h1>Jessie K.</h1>
-    <br>
-    <h2>Computer Science</h2>
-    <br>
-    <p>10.0.0.251</p>
-    <br>
-    <p>Queens, New York</p>
-    <br>
-    <p><img src = "room.jpg" width = 250px>My favorite place is my room back in NY. It is my source of comfort and I enjoy being able to relax there.</p>
-    <br>
-    <a href = "https://www.yelp.com/biz/nyonya-new-york">Nyonya</a>
-    <br>
-    <p>Something no one expects about me for some reason is that I can drive</p>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Joe's Hotdog Stand</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>Welcome to Joe's Hotdog Stand!</h1>
+        <img src="https://t3.ftcdn.net/jpg/04/44/28/90/360_F_444289001_v1aWl3ZAVwUqN1TEBta85Lp63x2q5rdN.jpg">
+        
+        <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Row 1 -->
+              <tr>
+                <td>Hot Dogs</td>
+                <td id = "hot-dog">--</td>
+                <td id = "hot-dog-price">--</td>
+
+              </tr>
+              <!-- Row 2 -->
+              <tr>
+                <td>French Fries</td>
+                <td id = "fry">--</td>
+                <td id = "fry-price">--</td>
+
+              </tr>
+              <!-- Row 3 -->
+              <tr>
+                <td>Sodas</td>
+                <td id = "soda">--</td>
+                <td id = "soda-price">--</td>
+
+              </tr>
+              <!-- Row 4 -->
+              <tr>
+                <td>Subtotal</td>
+                <td></td>
+                <td id = "subtotal">--</td>
+              </tr>
+              <!-- Row 5 -->
+              <tr>
+                <td>Discount</td>
+                <td></td>
+                <td id = "discount">--</td>
+              </tr>
+              <!-- Row 6 -->
+              <tr>
+                <td>New subtotal</td>
+                <td></td>
+                <td id = "new-sub">--</td>
+              </tr>
+              <!-- Row 7 -->
+              <tr>
+                <td>Tax amount</td>
+                <td></td>
+                <td id = "tax">--</td>
+              </tr>
+              <!-- Row 8 -->
+              <tr id = "final-total-row">
+                <td>Final total</td>
+                <td></td>
+                <td id = "fin-total">--</td>
+              </tr>
+            </tbody>
+          </table>
+
+
+        <script src = "script.js"></script>
+    </body>
 </html>
