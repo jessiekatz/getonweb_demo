@@ -1,0 +1,32 @@
+@font-face{
+    font-family: 'hotdog';
+    src: url("hotdog.ttf")
+    format('truetype'), 
+  }
+body{
+    
+    background-color: rgb(237, 246, 249);
+}
+h1 {
+    font-family: 'hotdog';
+    font-size: 5em;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+td {
+    border: none;
+    padding: 0.5em 2em 0 2em;
+}
+
+#receipt {
+    width: fit-content;
+    background-color: #fff;
+    margin: auto;
+    margin-bottom: 2em;
+    padding: 1.5em 1.5em 2.5em 1.5em;
+}
+
+#final-total-row {
+
+}
