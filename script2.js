@@ -23,9 +23,17 @@ if (subtotal >= 25) {
 taxed = 0.0625 * newSub;
 
 function showMoney(num) {
+    var str = "$";
     num = Math.round(num * 100)/100;
     
-    return "$"+num;
+    if (num % 1 == 0) 
+        str += num + '.00';
+    else if ((num*10) % 1 == 0)
+        str += num.toString() + '0';
+    else
+        str += num;
+    
+    return str;
 }
 
 
