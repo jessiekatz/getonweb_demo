@@ -27,20 +27,27 @@ if (subtotal >= 25) {
 taxed = 0.0625 * newSub;
 
 function showMoney(num) {
+    var str = "$";
     num = Math.round(num * 100)/100;
     
-    return "$"+num;
-}
+    if (num % 1 == 0) 
+        str += num + '.00';
+    else if ((num*10) % 1 == 0)
+        str += num.toString() + '0';
+    else
+        str += num;
 
+    return str;
+}
 
 // Display on html
 document.getElementById("hot-dog").innerHTML = numDogs;
 document.getElementById("fry").innerHTML = numFries;
 document.getElementById("soda").innerHTML = numSoda;
 
-document.getElementById("hot-dog-price").innerHTML = "$"+hotdogTotal;
-document.getElementById("fry-price").innerHTML = "$"+fryTotal;
-document.getElementById("soda-price").innerHTML = "$"+drinkTotal;
+document.getElementById("hot-dog-price").innerHTML = showMoney(hotdogTotal);
+document.getElementById("fry-price").innerHTML = showMoney(fryTotal);
+document.getElementById("soda-price").innerHTML = showMoney(drinkTotal);
 
 document.getElementById("subtotal").innerHTML = showMoney(subtotal);
 if (discount) {
