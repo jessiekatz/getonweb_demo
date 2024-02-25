@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+        <style type="text/css">
+            body {
+                text-align: center;
+                font-size: 1.7em;
+                font-family: 'Sniglet';
+                font-weight: 800;
+                /* background-color: #16002a; */
+            }
+
+            h1 {
+                font-size: 3em;
+                margin: 0.3em;
+            }
+
+            #newDiv, #newDiv2, #newDiv3 {
+                display: flex;
+                justify-content: center;
+            }
+            
+            .square {
+                height: 100px;
+                width: 100px;
+                margin: 5px;
+                border: 1px solid #7a7a7a;
+                text-align: center;
+                color: rgb(0, 0, 0);
+            }
+    
+            .square p {
+                margin: 0em;
+                font-size: 3em;
+            }
+    
+            .square:hover {
+                background-color: #e3f2fd;
+            }
+
+            .player {
+                height: 2em;
+                width: 12em;
+                padding-top: 1px;
+                background-color: #eeeeee;
+                margin: auto;
+                margin-top: 1em;
+                margin-bottom: 1em;
+
+            }
+            .player p, #game-result p {
+                margin-top: 0.2em;
+                font-size: 1.2em;
+            }
+
+            #game-result {
+                height: 2em;
+                width: 12em;
+                border: 1px solid rgb(255,0,0);
+                margin: auto;
+                margin-top: 1em;
+                margin-bottom: 1em;
+            }
+            
+            #start {
+                border-radius: 50px;
+                border: none;
+                background-color: #e3f2fd;
+                padding: 5px 20px;
+                font-family: 'Sniglet';
+                font-weight: 800;
+                font-size: 1.3em;
+            }
+
+            p {
+                margin: 0;
+            }
+        </style>
+
+    </head>
+    <body>
+        <h1>Tic Tac Toe</h1>
+
+        <button id="start" onclick="startGame()">Start Game</button>
+        <div class="player"></div>
+        <!-- <div id="game-result"></div> -->
+
+        <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+
+        <script>
+            var place_x = Math.random() < 0.5 ? true : false;
+            const NUM_SQUARES = 9;
+            let moves = ['-','-','-','-','-','-','-','-','-'];
+            let winConditions = [];
+
+
+            // creating div square places
+            for (i=0; i<NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write( "<div class='square' id='" + id + "'></div>" );
+            }
+
+            //TTT3=================================================================
+
+            // start a game and clear the board
+            function startGame() {
+                for (i=0; i<NUM_SQUARES; i++)
+                {
+                    id = "sq"+i;
+                    document.getElementById(id).innerHTML = "";
+                    document.getElementById(id).classList.remove("placed");
+                }
+                if (place_x) {
+                    $(".player").html(`<p>Player X turn</p>`);
+                } else {
+                    $(".player").html(`<p>Player O turn</p>`);
+                }
+                $("#start").html(`<p>Start Game</p>`);
+                }
+
+                // show starting player's turn
+                if (place_x) {
+                    $(".player").html(`<p>Player X turn</p>`);
+                } else {
+                    $(".player").html(`<p>Player O turn</p>`);
+                }
+
+
+                let squares = document.querySelectorAll(".square");
+
+                // placing an X or an O on a spot based on player's turn
+                // gives current square a placed class
+                // show popup of which square is placed
+                $(".square").click( function() {
+                    if (!$(this).hasClass("placed") && place_x) {
+                        $(this).html(`<p>X</p>`);
+                        $(this).addClass("placed");
+                        place_x = false;
+                        $(".player").html(`<p>Player O turn</p>`);
+
+                        var id = $(this).attr('id');
+                        alert(id.substring(2));
+                        
+                        squares.forEach((square) => {
+                            var sqid = square.id.substring(2);
+                            if (square.innerHTML === "") {
+                                moves[sqid] = '-';
+                            } else {
+                                moves[sqid] = square.querySelector("p").innerHTML;
+                            }});
+                        
+                        winConditions[0] = moves[0]+moves[1]+moves[2];
+                        winConditions[1] = moves[3]+moves[4]+moves[5];
+                        winConditions[2] = moves[6]+moves[7]+moves[8];
+
+                        winConditions[3] = moves[0]+moves[3]+moves[6];
+                        winConditions[4] = moves[1]+moves[4]+moves[7];
+                        winConditions[5] = moves[2]+moves[5]+moves[8];
+
+                        winConditions[6] = moves[0]+moves[4]+moves[8];
+                        winConditions[7] = moves[2]+moves[4]+moves[6];
+
+                        winConditions.forEach((i) => {
+                            if (i == "XXX") {
+                                $(".player").html(`<p>Player X won!</p>`);
+                                document.querySelectorAll('[id^="sq"]').forEach(square => square.classList.add('placed'));
+                                $("#start").html(`<p>Restart Game</p>`);
+                            } else if (moves.indexOf("-") === -1) {
+                                $(".player").html(`<p>Stalemate</p>`);
+                                document.querySelectorAll('[id^="sq"]').forEach(square => square.classList.add('placed'));
+                                $("#start").html(`<p>Restart Game</p>`);
+                            }
+                        });
+                    } 
+                    else if (!$(this).hasClass("placed") && !(place_x)) {
+                        $(this).html(`<p>O</p>`);
+                        $(this).addClass("placed");
+                        place_x = true;
+                        $(".player").html(`<p>Player X turn</p>`);
+
+                        var id = $(this).attr('id');
+                        alert(id.substring(2));
+
+                        squares.forEach((square) => {
+                            var sqid = square.id.substring(2);
+                            if (square.innerHTML === "") {
+                                moves[sqid] = '-';
+                            } else {
+                                moves[sqid] = square.querySelector("p").innerHTML;   
+                        }});
+
+                        winConditions[0] = moves[0]+moves[1]+moves[2];
+                        winConditions[1] = moves[3]+moves[4]+moves[5];
+                        winConditions[2] = moves[6]+moves[7]+moves[8];
+
+                        winConditions[3] = moves[0]+moves[3]+moves[6];
+                        winConditions[4] = moves[1]+moves[4]+moves[7];
+                        winConditions[5] = moves[2]+moves[5]+moves[8];
+
+                        winConditions[6] = moves[0]+moves[4]+moves[8];
+                        winConditions[7] = moves[2]+moves[4]+moves[6];
+
+                        winConditions.forEach((i) => {
+                            if (i == "OOO") {
+                                $(".player").html(`<p>Player O won!</p>`);
+                                document.querySelectorAll('[id^="sq"]').forEach(square => square.classList.add('placed'));
+                                $("#start").html(`<p>Restart Game</p>`);
+                            } else if (moves.indexOf("-") === -1) {
+                                $(".player").html(`<p>Stalemate</p>`);
+                                document.querySelectorAll('[id^="sq"]').forEach(square => square.classList.add('placed'));
+                                $("#start").html(`<p>Restart Game</p>`);
+                            }
+                        });
+                    }
+                });
+                //=====================================================================
+
+
+                // Appending div children to div parent to 
+                // arrange three rows of three divs
+                var row = document.createElement("div");
+                document.body.appendChild(row);
+                row.id = "newDiv";
+                var div1 = document.getElementById("sq0");
+                var div2 = document.getElementById("sq1");
+                var div3 = document.getElementById("sq2");
+                row.appendChild(div1);
+                row.appendChild(div2);
+                row.appendChild(div3);
+
+                var row2 = document.createElement("div");
+                document.body.appendChild(row2);
+                row2.id = "newDiv2";
+                var div4 = document.getElementById("sq3");
+                var div5 = document.getElementById("sq4");
+                var div6 = document.getElementById("sq5");
+                row2.appendChild(div4);
+                row2.appendChild(div5);
+                row2.appendChild(div6);
+
+                var row3 = document.createElement("div");
+                document.body.appendChild(row3);
+                row3.id = "newDiv3";
+                var div7 = document.getElementById("sq6");
+                var div8 = document.getElementById("sq7");
+                var div9 = document.getElementById("sq8");
+                row3.appendChild(div7);
+                row3.appendChild(div8);
+                row3.appendChild(div9);
+        </script>
+        <!-- <script src="script.js"></script> -->
+    </body>
+</html>
