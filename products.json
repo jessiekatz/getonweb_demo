@@ -1,0 +1,65 @@
+{
+    "products": [
+      {
+        "name": "Laptop",
+        "description": "Fast and powerful laptop with long-lasting battery.",
+        "price": 1250.25,
+        "categories": ['Electronics']
+      },
+      {
+        "name": "Running Shoes",
+        "description": "Comfortable shoes for everyday casual wear.",
+        "price": 110.00,
+        "categories": ['Footwear']
+      },
+      {
+        "name": "Camera",
+        "description": "High-res, red camera.",
+        "price": 500.00,
+        "categories": ['Electronics']
+      },
+      {
+        "name": "Headphones",
+        "description": "Silver Over-ear headphones with noise-cancellation.",
+        "price": 150.00,
+        "categories": ['Electronics', 'Audio']
+      },
+      {
+        "name": "Backpack",
+        "description": "Black and grey backpack.",
+        "price": 40.00,
+        "categories": ['Accessories']
+      },
+      {
+        "name": "Smartwatch",
+        "description": "Smart wristwatch.",
+        "price": 599.99,
+        "categories": ['Electronics', 'Accessories']
+      },
+      {
+        "name": "Television",
+        "description": "4K HD Television.",
+        "price": 799.99,
+        "categories": ['Electronics']
+      },
+      {
+        "name": "Speaker",
+        "description": "White bluetooth speaker.",
+        "price": 300.15,
+        "categories": ['Electronic', 'Audio']
+      },
+      {
+        "name": "Sunglasses",
+        "description": "Square frame, tortoise shell sunglasses.",
+        "price": 225.50,
+        "categories": ['Accessories']
+      },
+      {
+        "name": "Gaming Controller",
+        "description": "New controller for better gaming experiences.",
+        "price": 100.00,
+        "categories": ['Electronics', 'Gaming']
+      }
+    ]
+  }
+  
